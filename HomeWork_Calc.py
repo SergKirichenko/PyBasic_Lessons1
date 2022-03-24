@@ -37,16 +37,13 @@ try:
         result = first_in * second_in
         print(f"Result :\n  {half_res} {result}")
     elif operator == "4":                              # операция деления
-        if  second_in != 0:                            # проверка на 0 внутри блока
-            result = first_in / second_in                 #
-            print(f"Result :\n  {half_res} {result}")     #
-        else:                                             #
-            print("!!!Error!!! - Zero Divide")                  #
+        result = first_in / second_in
+        print(f"Result :\n  {half_res} {result}")
     elif operator == "5":                              # операция возведения в степень
         result = first_in ** second_in
         print(f"Result :\n  {half_res} {result}")
     else:
         print("!!!Error!!! - Choose Correct Operator")
-except NameError:
-    print("!!!Error!!! - раскладка клавиатуры | Не правельный ввод данный")
+except (NameError, ZeroDivisionError, TypeError):
+    print("!!!Error!!! - раскладка клавиатуры | Не правельный ввод данный | Деление на 0")
 ###################################################################################

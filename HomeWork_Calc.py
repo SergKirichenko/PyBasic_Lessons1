@@ -1,4 +1,4 @@
-print("Hello!!!\nЗадание калкулятор")
+print(" Hello!\nЗадание калкулятор")
 #############################################################################################
 half_res = None
 ##############################################################################################
@@ -37,7 +37,7 @@ try:
         result = first_in * second_in
         print(f"Result :\n  {half_res} {result}")
     elif operator == "4":                              # операция деления
-        if first_in and second_in != 0:                   # проверка на 0 внутри блока
+        if  second_in != 0:                            # проверка на 0 внутри блока
             result = first_in / second_in                 #
             print(f"Result :\n  {half_res} {result}")     #
         else:                                             #

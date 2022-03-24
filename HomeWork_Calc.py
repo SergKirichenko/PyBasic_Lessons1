@@ -3,27 +3,19 @@ print(" Hello!\nЗадание калкулятор")
 half_res = None
 ##############################################################################################
 first_num = input(" Input First number: ")
+operator = input("Сhoose the operation:\n 1: +\n 2: -\n 3: *\n 4: /\n 5: ^\n  Operation: ")
+second_num = input(" Input Second number: ")
+operator_f = {"1": "+", "2": "-", "3": "*", "4": "/", "5": "^"}       # вне классная работа для красоты
+###############################################################################################
 try:
     first_in = float(first_num)
-except (ValueError, NameError):
-    print("!!!Incorrect number!!!")
-###############################################################################################
-operator = input("Сhoose the operation:\n 1: +\n 2: -\n 3: *\n 4: /\n 5: ^\n  Operation: ")
-try:
-    operator_a = int(operator)
-except:
-    print("!!!Error!!! - Choose Correct Operator")
-###############################################################################################
-second_num = input(" Input Second number: ")
-try:
     second_in = float(second_num)
-except (ValueError, NameError):
-    print("!!!Incorrect number!!!")
-##############################################################################################
-operator_f = {"1": "+", "2": "-", "3": "*", "4": "/", "5": "^"}       # вне классная работа для красоты
+    operator_a = int(operator)
+except(TypeError, KeyError, NameError, ValueError):
+    print("!!!Error!!! - Choose Correct Operator")
 try:
-    half_res = f"{first_in} {operator_f[operator]} {second_in} = "    #
-except (TypeError, KeyError,NameError):
+    half_res = f"{first_in} {operator_f[operator]} {second_in} = "  #
+except (TypeError, KeyError, NameError, ValueError):
     print("!!!Error!!! - Choose Correct Operator /  Не правилный ввод ")
 ##############################################################################################
 try:

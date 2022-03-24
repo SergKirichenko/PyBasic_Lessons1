@@ -27,6 +27,6 @@ try:
     operator_r = int(operator)
     print("Result: ", half_res, result[operator_r - 1])
 except (NameError, KeyError, ValueError, TypeError, ZeroDivisionError, IndexError):
-    print("!!!Error!!! - Input Correct Value /  Не правилный ввод ")
+    print("!!!Error!!! - Input Correct Value /  Не правилный ввод / Деление на 0")
 ################################################################################################
 print("\n  End Calculator ")

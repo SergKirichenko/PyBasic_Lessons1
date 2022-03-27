@@ -5,30 +5,21 @@ while loop_op:
 
 # 111###########################################
     if qwest == "1":
-        try:
-            value = int(input("Ввкдите целое число: "))
-            new_value = value / 2 if value < 100 else -value
-            print(new_value)
-        except (TypeError, NameError, ValueError):
-            print(" Ошибка - это не целое число")
+        value = 35
+        new_value = value / 2 if value < 100 else -value
+        print(new_value)
 
 # 222#############################################
     elif qwest == "2":
-        try:
-            value = int(input("Ввкдите целое число: "))
-            new_value = 1 if value < 100 else 0
-            print(new_value)
-        except (TypeError, NameError, ValueError):
-            print(" Ошибка - это не целое число")
+        value = 125
+        new_value = 1 if value < 100 else 0
+        print(new_value)
 
 # 333################################################
     elif qwest == "3":
-        try:
-            value = int(input("Ввкдите целое число: "))
-            new_value = True if value < 100 else False
-            print(new_value)
-        except (TypeError, NameError, ValueError):
-            print(" Ошибка - это не целое число")
+        value = 17
+        new_value = True if value < 100 else False
+        print(new_value)
 
 # 444#################################################
     elif qwest == "4":

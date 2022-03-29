@@ -7,6 +7,6 @@ for stm_1 in new_str_1:
             result = int(result)
             print(result)
 
-            # new_result.append(result)    # можно собрать данные в список. но в задание не было
+            # new_result.append(result)    # можно собрать данные в список. но этого в задание не было.
 
 # print(new_result)                        #

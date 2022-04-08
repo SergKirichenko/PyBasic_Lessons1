@@ -5,8 +5,8 @@
 number_1 = 14602604908
 # result_1 = str(number_1).count("0")
 
-number_str = str(number_1)            #
-result_1 = number_str.count("0")      #
+number_str = str(number_1)  #
+result_1 = number_str.count("0")  #
 
 print("1- ", result_1)
 
@@ -23,20 +23,17 @@ print("2- ", result_2)
 # элементы на четных местах из my_list_1, а потом все элементы на нечетных местах из my_list_2.
 # 3  ##################################################
 
-my_list_1 = list("0qwerty")
+my_list_1 = list("0qwerty11")
 my_list_2 = list("ZXCVBN2")
 my_result = []
 
-my_result.extend(my_list_1)    #
-# index = 0
-# for symbol in my_list_1:
-#     my_result.insert(index, symbol)
-#     index += 2
+value = min(len(my_list_1), len(my_list_2))
+for symbol in range(value):
+    my_result.append(my_list_1[symbol])
+    my_result.append(my_list_2[symbol])
 
-index = 1
-for symbol in my_list_2:
-    my_result.insert(index, symbol)
-    index += 2
+my_result.extend(my_list_1[value:])
+my_result.extend(my_list_2[value:])
 print("3- ", my_result)
 
 # 4. Дан список my_list. СОЗДАТЬ НОВЫЙ список new_list у которого первый элемент из my_list
@@ -136,8 +133,8 @@ print("9- ", result_9)
 # 10 ##############################################################
 
 my_list_10 = [3, 4, 7, 12, "3", "23", "32", ]
-my_list_set = set([str(item) for item in my_list_10])
-my_result_10 = list(set(my_list_10).intersection(my_list_set))
+my_result_10 = [item for item in my_list_10 if type(item) == str]
+
 print("10- ", my_result_10)
 
 # 11. Дана строка my_str. Создать список в который поместить те символы, из my_str,
@@ -146,14 +143,17 @@ print("10- ", my_result_10)
 
 my_str = "sassaatrxxx"
 my_list_result_11 = []
-for symbol in my_str:
-    item = my_str.count(symbol)
-    if item == 1:
-        my_list_result_11.append(symbol)
 
-# my_result_11 = [symbol for symbol in my_str if my_str.count(symbol) == 1]
+my_set = set(my_str)
 
-print("11- ", my_list_result_11)
+for symbol in my_set:                             # Вариант 1
+    item = my_str.count(symbol)                   #
+    if item == 1:                                 #
+        my_list_result_11.append(symbol)          #
+
+my_result_11_v2 = [symbol for symbol in my_set if my_str.count(symbol) == 1]  # Вариант 2
+
+print("11- ", my_list_result_11, ",V 2 -", my_result_11_v2)
 
 # 12. Даны две строки. Создать список в который поместить те символы,
 # которые есть в обеих строках хотя бы раз.
@@ -162,14 +162,12 @@ print("11- ", my_list_result_11)
 my_str_A = "qazwsx"
 my_str_B = "qwerty"
 
-# my_result_12 = [symbol for symbol in my_str_A if symbol in my_str_B]
+my_result_12 = [symbol for symbol in my_str_A if symbol in my_str_B]  # Вариант 1, через генератор
+# Вопрос: Какой вариант лучше и менее затратен по ресурсам?
 
-my_result_12 = []
-for symbol in my_str_A:
-    if symbol in my_str_B:
-        my_result_12.append(symbol)
+my_result_12_set = list(set(my_str_A).intersection(set(my_str_B)))  # Вариант 2, через пересечение множеств
 
-print("12- ", my_result_12)
+print("12- ", my_result_12, ",V 2 -", my_result_12_set)
 
 # 13. Даны две строки. Создать список в который поместить те символы, которые есть в обеих строках,
 # но в каждой ТОЛЬКО ПО ОДНОМУ разу.
@@ -180,15 +178,6 @@ my_str_1 = "qqqqaaazzzwsx"
 my_str_2 = "qqqwwwaasszx"
 my_result_13 = []
 
-# 1й Вариант #############################################
-# for symbol in my_str_1:
-#     if symbol in my_str_2:
-#         item_1 = my_str_1.count(symbol)
-#         if item_1 == 1:
-#             item_2 = my_str_2.count(symbol)
-#             if item_2 == 1:
-#                 my_result_13.append(symbol)
-# 2й Вариант ###############################################
 my_result = list(set(my_str_1).intersection(set(my_str_2)))
 for symbol in my_result:
     symbol_1 = my_str_1.count(symbol)
@@ -196,7 +185,5 @@ for symbol in my_result:
     if symbol_1 == symbol_2 == 1:
         my_result_13.append(symbol)
 #####################################################
-
 print("13- ", my_result_13)
-
 ##################################################

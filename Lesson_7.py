@@ -23,17 +23,11 @@ print("2- ", result_2)
 # элементы на четных местах из my_list_1, а потом все элементы на нечетных местах из my_list_2.
 # 3  ##################################################
 
-my_list_1 = list("0qwerty11")
+my_list_1 = list("012345")
 my_list_2 = list("ZXCVBN2")
 my_result = []
-
-value = min(len(my_list_1), len(my_list_2))
-for symbol in range(value):
-    my_result.append(my_list_1[symbol])
-    my_result.append(my_list_2[symbol])
-
-my_result.extend(my_list_1[value:])
-my_result.extend(my_list_2[value:])
+my_result.extend(my_list_1[::2])
+my_result.extend(my_list_2[1::2])
 print("3- ", my_result)
 
 # 4. Дан список my_list. СОЗДАТЬ НОВЫЙ список new_list у которого первый элемент из my_list
@@ -146,10 +140,10 @@ my_list_result_11 = []
 
 my_set = set(my_str)
 
-for symbol in my_set:                             # Вариант 1
-    item = my_str.count(symbol)                   #
-    if item == 1:                                 #
-        my_list_result_11.append(symbol)          #
+for symbol in my_set:  # Вариант 1
+    item = my_str.count(symbol)  #
+    if item == 1:  #
+        my_list_result_11.append(symbol)  #
 
 my_result_11_v2 = [symbol for symbol in my_set if my_str.count(symbol) == 1]  # Вариант 2
 

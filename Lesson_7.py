@@ -28,9 +28,7 @@ print("2- ", result_2)
 
 my_list_1 = list("012345")
 my_list_2 = list("ZXCVBN2")
-my_result = []
-my_result.extend(my_list_1[::2])
-my_result.extend(my_list_2[1::2])
+my_result = my_list_1[::2] + my_list_2[1::2]
 print("3- ", my_result)
 
 # 4. Дан список my_list. СОЗДАТЬ НОВЫЙ список new_list у которого первый элемент из my_list
@@ -57,7 +55,7 @@ print("5- ", my_list_5)
 # 6 #######################################################
 
 my_str = "14 32  1 7"
-my_str_list = my_str.split(" ")
+my_str_list = my_str.split()
 value = 0
 for item in my_str_list:
     if item.isdigit():

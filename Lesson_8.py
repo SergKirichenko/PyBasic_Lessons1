@@ -122,6 +122,8 @@ my_dict_4.update(my_dict_2)
 for key, value in my_dict_1.items():
     if my_dict_2.get(key, 0):
         my_dict_4[key] = [value, my_dict_2[key]]
+    elif my_dict_2.get(key) == 0:
+        my_dict_4[key] = [value, my_dict_2[key]]
     else:
         my_dict_4[key] = value
 

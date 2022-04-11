@@ -62,8 +62,8 @@ person = [{"name": "John", "age": 21},
           {"name": "Alise", "age": 17},
           {"name": "Jack", "age": 41},
           ]
-name_of_person = [person_name.get("name") for person_name in person]
-age_of_person = [person_age.get("age") for person_age in person]
+name_of_person = [person_name.get("name") for person_name in person]  #
+age_of_person = [person_age.get("age") for person_age in person]      #
 min_age = min(age_of_person)
 middle_ages = sum(age_of_person) / len(age_of_person)
 
@@ -120,7 +120,8 @@ my_dict_4 = {}
 my_dict_4.update(my_dict_2)
 
 for key, value in my_dict_1.items():
-    if my_dict_2.get(key, 0):
+    print(my_dict_2.get(key))
+    if my_dict_2.get(key):
         my_dict_4[key] = [value, my_dict_2[key]]
     elif my_dict_2.get(key) == 0:
         my_dict_4[key] = [value, my_dict_2[key]]

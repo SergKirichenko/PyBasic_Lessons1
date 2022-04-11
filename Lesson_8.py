@@ -30,15 +30,15 @@ print("1- (a)", my_result_b, "\n")
 # элементы из my_list у которых первый символ - буква "a".
 # 2 #######################################################################
 
-my_list = ["qwerty", "asdfgh", "zxcvbn", "12345", ]  # Вариант А
-my_result_2a = []  #
-for symbol in my_list:  #
-    if symbol[0] == "a":  #
-        my_result_2a.append(symbol)  #
+my_list = ["qwerty", "asdfgh", "zxcvbn", "12345", ]
+# my_result_2a = []  ## Вариант А
+# for symbol in my_list:  #
+#     if symbol[0] == "a":  #
+#         my_result_2a.append(symbol)  #
 
 my_result_2b = [symbol for symbol in my_list if symbol[0] == "a"]  # Вариант Б
 
-print("2- (a)", my_result_2a, "\n2- (b)", my_result_2b, "\n")
+print("2- (a)", my_result_2b, "\n")
 
 # 3. Дан список строк my_list. Создать новый список в который поместить
 # элементы из my_list в которых есть символ - буква "a" на любом месте.

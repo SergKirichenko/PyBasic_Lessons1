@@ -62,8 +62,8 @@ person = [{"name": "John", "age": 21},
           {"name": "Alise", "age": 17},
           {"name": "Jack", "age": 41},
           ]
-name_of_person = [symbol_name.get("name") for symbol_name in person]
-age_of_person = [index_age.get("age") for index_age in person]
+name_of_person = [person_name.get("name") for person_name in person]
+age_of_person = [person_age.get("age") for person_age in person]
 min_age = min(age_of_person)
 middle_ages = sum(age_of_person) / len(age_of_person)
 

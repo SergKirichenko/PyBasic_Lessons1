@@ -9,13 +9,9 @@
 
 my_list = ["qwerty", "asdfgh", "zxcvbn", "12345", ]
 
-# my_result_a = []  # Вариант А
-# for index in range(len(my_list)):
-#     if index % 2:
-#         revers_list = my_list[index]
-#         my_result_a.insert(index, revers_list[::-1])
-#     else:
-#         my_result_a.insert(index, my_list[index])
+# my_result_a = []
+# for index, symbol in enumerate(my_list):
+#     my_result_a.append(symbol[::-1] if index % 2 else symbol)
 
 my_result_b = []  # Вариант Б
 for index, symbol in enumerate(my_list):
@@ -63,7 +59,7 @@ person = [{"name": "John", "age": 21},
           {"name": "Jack", "age": 41},
           ]
 name_of_person = [person_name.get("name") for person_name in person]  #
-age_of_person = [person_age.get("age") for person_age in person]      #
+age_of_person = [person_age.get("age") for person_age in person]  #
 min_age = min(age_of_person)
 middle_ages = sum(age_of_person) / len(age_of_person)
 

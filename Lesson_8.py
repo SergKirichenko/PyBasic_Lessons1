@@ -9,22 +9,22 @@
 
 my_list = ["qwerty", "asdfgh", "zxcvbn", "12345", ]
 
-my_result_a = []  # Вариант А
-for index in range(len(my_list)):
-    if index % 2:
-        revers_list = my_list[index]
-        my_result_a.insert(index, revers_list[::-1])
-    else:
-        my_result_a.insert(index, my_list[index])
+# my_result_a = []  # Вариант А
+# for index in range(len(my_list)):
+#     if index % 2:
+#         revers_list = my_list[index]
+#         my_result_a.insert(index, revers_list[::-1])
+#     else:
+#         my_result_a.insert(index, my_list[index])
 
 my_result_b = []  # Вариант Б
 for index, symbol in enumerate(my_list):
     if index % 2:
-        my_result_b.insert(index, symbol[::-1])
+        my_result_b.append(symbol[::-1])
     else:
-        my_result_b.insert(index, symbol)
+        my_result_b.append(symbol)
 
-print("1- (a)", my_result_a, "\n1- (b)", my_result_b, "\n")
+print("1- (a)", my_result_b, "\n")
 
 # 2. Дан список строк my_list. Создать новый список в который поместить
 # элементы из my_list у которых первый символ - буква "a".
@@ -62,8 +62,8 @@ person = [{"name": "John", "age": 21},
           {"name": "Alise", "age": 17},
           {"name": "Jack", "age": 41},
           ]
-name_of_person = [index.get("name") for index in person]
-age_of_person = [index.get("age") for index in person]
+name_of_person = [symbol_name.get("name") for symbol_name in person]
+age_of_person = [index_age.get("age") for index_age in person]
 min_age = min(age_of_person)
 middle_ages = sum(age_of_person) / len(age_of_person)
 

@@ -29,7 +29,6 @@ def chooses_with_first_a(my_list):
     return result
 
 
-my_list_2 = ["qwerty", "asdfgh", "zxcvbn", "12345", ]
 list_432 = ["aaa", "bbb", "ccc", "abc", ]
 
 first_a = chooses_with_first_a(list_432)

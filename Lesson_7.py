@@ -35,9 +35,9 @@ print("3- ", my_result)
 # стоит на последнем месте. Если my_list [1,2,3,4], то new_list [2,3,4,1]
 # 4 #########################################################
 
-my_list_4 = list('z1234a')
-new_list = my_list_4[1:]
-new_list.append(my_list_4[0])
+my_list_4 = list("a1234z")
+new_list = my_list_4[1:] + [my_list_4[0]]
+# new_list.append(my_list_4[0])
 print("4- ", new_list)
 
 # 5.Дан список my_list. В ЭТОМ списке первый элемент переставить на последнее место.
@@ -45,8 +45,8 @@ print("4- ", new_list)
 # 5 ########################################################
 
 my_list_5 = [1, 2, 3, 4, 5, ]
-value = my_list_5.pop(0)
-my_list_5.append(value)
+# value = my_list_5.pop(0)
+my_list_5.append(my_list_5.pop(0))
 print("5- ", my_list_5)
 
 # 6. Дана строка в которой есть числа (разделяются пробелами).
@@ -71,10 +71,9 @@ print("6- ", value)
 my_str = "It wonderful time, bla bla bla."
 l_limit = "o"
 r_limit = "b"
-
-index_a = my_str.find(l_limit) + 1
-index_b = my_str.rfind(r_limit)
-sub_str = my_str[index_a:index_b]
+# index_a = my_str.find(l_limit) + 1
+# index_b = my_str.rfind(r_limit)
+sub_str = my_str[my_str.find(l_limit) + 1:my_str.rfind(r_limit)]
 print("7- ", sub_str)
 
 # 8. Дана строка my_str. Разделите эту строку на пары из двух символов и поместите эти пары в список.
@@ -136,7 +135,7 @@ print("10- ", my_result_10)
 # которые встречаются в строке ТОЛЬКО ОДИН раз.
 # 11 ###############################################################
 
-my_str = "sassaatrxxx"
+my_str = "sasssssssssssssddddddaaaaaaaaaaaagjlsaatrxxx"
 my_list_result_11 = []
 
 my_set = set(my_str)
@@ -146,7 +145,7 @@ for symbol in my_set:  # Вариант 1
     if item == 1:  #
         my_list_result_11.append(symbol)  #
 
-my_result_11_v2 = [symbol for symbol in my_set if my_str.count(symbol) == 1]  # Вариант 2
+my_result_11_v2 = [symbol for symbol in set(my_str) if my_str.count(symbol) == 1]  # Вариант 2
 
 print("11- ", my_list_result_11, ",V 2 -", my_result_11_v2)
 
@@ -154,30 +153,24 @@ print("11- ", my_list_result_11, ",V 2 -", my_result_11_v2)
 # которые есть в обеих строках хотя бы раз.
 # 12 #################################################
 
-my_str_A = "qazwsx"
-my_str_B = "qwerty"
+my_str_A = "qazwsxxxxxxx"
+my_str_B = "qwertyxxxxxx"
 
-my_result_12 = [symbol for symbol in my_str_A if symbol in my_str_B]  # Вариант 1, через генератор
-# Вопрос: Какой вариант лучше и менее затратен по ресурсам?
+# my_result_12 = [symbol for symbol in my_str_A if symbol in my_str_B]  # Вариант 1,
+my_result_12_set = list(set(my_str_A).intersection(set(my_str_B)))  # Вариант 2,
 
-my_result_12_set = list(set(my_str_A).intersection(set(my_str_B)))  # Вариант 2, через пересечение множеств
-
-print("12- ", my_result_12, ",V 2 -", my_result_12_set)
+print("12- ", my_result_12_set)
 
 # 13. Даны две строки. Создать список в который поместить те символы, которые есть в обеих строках,
 # но в каждой ТОЛЬКО ПО ОДНОМУ разу.
 # Пример: для строк "aaaasdf1" и "asdfff2" ответ ["s", "d"], т.к. эти символы есть в каждой строке по одному разу
 # 13 ##########################################################
 
-my_str_1 = "qqqqaaazzzwsx"
-my_str_2 = "qqqwwwaasszx"
+my_str_1 = "qqqqaaaaaaaaaaaazzzwsxj"
+my_str_2 = "qqqwwwwwaasszxj"
 my_result_13 = []
-
-my_result = list(set(my_str_1).intersection(set(my_str_2)))
-for symbol in my_result:
-    symbol_1 = my_str_1.count(symbol)
-    symbol_2 = my_str_2.count(symbol)
-    if symbol_1 == symbol_2 == 1:
+for symbol in set(my_str_1).intersection(set(my_str_2)):
+    if my_str_1.count(symbol) == 1 and my_str_2.count(symbol) == 1:
         my_result_13.append(symbol)
 #####################################################
 print("13- ", my_result_13)

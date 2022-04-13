@@ -9,18 +9,18 @@
 
 my_list = ["qwerty", "asdfgh", "zxcvbn", "12345", ]
 
-# my_result_a = []
-# for index, symbol in enumerate(my_list):
-#     my_result_a.append(symbol[::-1] if index % 2 else symbol)
-
-my_result_b = []  # Вариант Б
+my_result_a = []
 for index, symbol in enumerate(my_list):
-    if index % 2:
-        my_result_b.append(symbol[::-1])
-    else:
-        my_result_b.append(symbol)
+    my_result_a.append(symbol[::-1] if index % 2 else symbol)
 
-print("1- (a)", my_result_b, "\n")
+# my_result_b = []  # Вариант Б
+# for index, symbol in enumerate(my_list):
+#     if index % 2:
+#         my_result_b.append(symbol[::-1])
+#     else:
+#         my_result_b.append(symbol)
+
+print("1- (a)", my_result_a, "\n")
 
 # 2. Дан список строк my_list. Создать новый список в который поместить
 # элементы из my_list у которых первый символ - буква "a".
@@ -102,16 +102,16 @@ my_dict_2 = {"name": "Olivia",
              "Moto": "Suzuki",
              "Hobby": "paint",
              }
-
+# 1
 list_key_A = list(set(my_dict_1.keys()).intersection(set(my_dict_2.keys())))
 print("5- (A):", list_key_A)
-
+# 2
 list_key_B = list(set(my_dict_1.keys()).difference(set(my_dict_2.keys())))
 print("5- (Б):", list_key_B)
-
+# 3
 my_dict_3a = {index: (my_dict_1[index]) for index in list_key_B}
 print("5- (B):", my_dict_3a)
-
+# 4
 my_dict_4 = {}
 my_dict_4.update(my_dict_2)
 

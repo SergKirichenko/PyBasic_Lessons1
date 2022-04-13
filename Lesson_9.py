@@ -16,7 +16,6 @@ def change_odd_str(my_list):
 
 
 my_list_1 = ["qwerty", "asdfgh", "zxcvbn", "12345", ]
-list_234 = ["123", "asd", "azx"]
 
 odd_str = change_odd_str(my_list_1)
 

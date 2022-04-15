@@ -58,10 +58,10 @@ person = [{"name": "John", "age": 21},
           {"name": "Alise", "age": 17},
           {"name": "Jack", "age": 41},
           ]
-names_of_person = [person_name.get("name") for person_name in person]  #
-ages_of_person = [person_age.get("age") for person_age in person]  #
-min_age = min(age_of_person)
-middle_ages = sum(age_of_person) / len(age_of_person)
+names_of_persons = [person_name.get("name") for person_name in person]  #
+ages_of_persons = [person_age.get("age") for person_age in person]  #
+min_age = min(ages_of_persons)
+middle_ages = sum(ages_of_persons) / len(ages_of_persons)
 
 youngest_man = []
 for index in person:
@@ -70,8 +70,8 @@ for index in person:
         youngest_man.append(index["name"])
 
 name_max_len = []
-max_len_name = max([len(symbol) for symbol in name_of_person])
-for symbol in name_of_person:
+max_len_name = max([len(symbol) for symbol in names_of_persons])
+for symbol in names_of_persons:
     item = len(symbol)
     if item == max_len_name:
         name_max_len.append(symbol)

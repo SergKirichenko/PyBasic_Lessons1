@@ -130,7 +130,7 @@ symbol_at_one = find_same_single_symbol(my_str_a, my_str_b)
 
 def generate_email(domain, name):
     mu_str = "".join(random.sample(string.ascii_lowercase, random.choice([6, 5, 7])))
-    mail = random.choice(name) + str(random.randint(100, 999)) + "@" + mu_str + random.choice(domain)
+    mail = random.choice(name) + "." + str(random.randint(100, 999)) + "@" + mu_str + random.choice(domain)
     return mail
 
 

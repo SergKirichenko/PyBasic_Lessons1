@@ -17,7 +17,7 @@ def domain_without_point(filename):
 
 
 exercise_1 = domain_without_point('domains.txt')
-print(exercise_1)
+print("2- ", exercise_1)
 
 
 # 2. Написать функцию, которая получает в виде параметра имя файла (names.txt)
@@ -37,7 +37,7 @@ def getting_surnames(filename):
 
 
 exercise_2 = getting_surnames("names.txt")
-print("1- ", exercise_2)
+print("2- ", exercise_2)
 
 
 #  Это случайное дополнительное задание "получение списка фамилий авторов" во 2-ом задании для файла authors.txt
@@ -59,7 +59,7 @@ def getting_list_surnames_of_authors(filename):
 
 
 exercise_2_plus = getting_list_surnames_of_authors('authors.txt')
-print("2- ", exercise_2_plus)
+print("2+ -", exercise_2_plus)
 
 
 # 3. Написать функцию, которая получает в виде параметра имя файла (authors.txt) и возвращает список
@@ -105,12 +105,12 @@ def modification_date(date_str) -> str:
                    "October": "10",
                    "November": "11",
                    "December": "12"}
-    modified_date = ""
+
     date_list = date_str.split(' ')
-    if len(date_list) >= 3:
-        modified_date = f"{date_list[0][:-2]}/{months_dict[date_list[1]]}/{date_list[2]}"
-    elif len(date_list) < 3:
-        modified_date = f"/{months_dict[date_list[0]]}/{date_list[1]}"
+    days = date_list[0][:-2] if len(date_list) >= 3 else ""
+    years = date_list[2] if len(date_list) >= 3 else date_list[1]
+    months = months_dict[date_list[1]] if len(date_list) >= 3 else months_dict[date_list[0]]
+    modified_date = f"{days}/{months}/{years}"
     return modified_date
 
 
@@ -122,10 +122,10 @@ def modify_date_list_dictionaries(filename) -> list:
     data_list = []
     for my_dict in original_date_dict:
         date_words_str = my_dict["data"]
-        mod_date = modification_date(date_words_str)  # вызов подготовительно функции
-        data_list.append({"date_original": my_dict["data"], "date_modified": mod_date})
+        modify_date = modification_date(date_words_str)  # вызов подготовительно функции
+        data_list.append({"date_original": my_dict["data"], "date_modified": modify_date})
     return data_list
 
 
 exercise_4 = modify_date_list_dictionaries("authors.txt")
-print("4- ", exercise_4)
+print("4*- ", exercise_4)

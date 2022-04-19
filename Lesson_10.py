@@ -112,7 +112,7 @@ def modification_date(date_str) -> str:
     return modified_date
 
 
-# Подготовительная функция (c помощью модуля datatime):
+# Подготовительная функция (c помощью модуля datetime):
 def converting_date(date_str) -> str:
     date_list = date_str.split(' ')
     if len(date_list) >= 3:

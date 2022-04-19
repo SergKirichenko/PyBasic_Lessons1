@@ -11,8 +11,8 @@ def open_file(filename) -> str:
 
 
 def domain_without_point(filename):
-    data = open_file(filename)
-    result_domains = [domain[1:] for domain in data.split("\n")]
+    data_str = open_file(filename)
+    result_domains = [domain[1:] for domain in data_str.split("\n")]
     return result_domains
 
 
@@ -26,9 +26,9 @@ print("2- ", exercise_1)
 # Разделитель - символ табуляции "\t"
 
 
-def getting_surnames(filename):
-    data = open_file(filename)
-    data_list = data.split("\n")
+def getting_surnames(filename) -> list:
+    data_str = open_file(filename)
+    data_list = data_str.split("\n")
     surnames_list = []
     for words_str in data_list:
         words_list = words_str.split("\t")
@@ -41,19 +41,17 @@ print("2- ", exercise_2)
 
 
 #  Это случайное дополнительное задание "получение списка фамилий авторов" во 2-ом задании для файла authors.txt
-
-
-def getting_list_surnames_of_authors(filename):
-    data = open_file(filename)
+def getting_list_surnames_of_authors(filename) -> list:
+    data_str = open_file(filename)
     surnames_list = []
-    data_list = data.split("\n")
-    data_str = " ".join(data_list)
-    words_list_data = data_str.split(' ')
+    data_list = data_str.split("\n")
+    data_line_str = " ".join(data_list)
+    words_list_data = data_line_str.split(' ')
     for words_str in words_list_data:
         if "'s" in words_str:
-            list_words_str = words_str[:-2]
-            if list_words_str.istitle():
-                surnames_list.append(list_words_str)
+            spec_words_str = words_str[:-2]
+            if spec_words_str.istitle():
+                surnames_list.append(spec_words_str)
     result = list(set(surnames_list))
     return result
 
@@ -68,7 +66,7 @@ print("2+ -", exercise_2_plus)
 # Например [{"date": "1st January 1919"}, {"date": "8th February 1828"},  ...]
 
 
-def list_date_dictionaries(filename):
+def list_date_dictionaries(filename) ->list:
     data = open_file(filename)
     data_list = data.split("\n")
     data_len_sort = [my_str for my_str in data_list if len(my_str) > 12]
@@ -118,12 +116,12 @@ def modification_date(date_str) -> str:
 def converting_date(date_str) -> str:
     date_list = date_str.split(' ')
     if len(date_list) >= 3:
-        days = date_list[0]
-        str_date = (days[0:-2]) + (" ".join(date_list[1:3]))
-        mod_date = datetime.datetime.strptime(str_date, "%d%B %Y").strftime('%d/%m/%Y')
+        day_str = date_list[0]
+        str_date = (day_str[0:-2]) + (" ".join(date_list[1:3]))
+        convert_date = datetime.datetime.strptime(str_date, "%d%B %Y").strftime('%d/%m/%Y')
     else:
-        mod_date = datetime.datetime.strptime(date_str, "%B %Y").strftime('/%m/%Y')
-    return mod_date
+        convert_date = datetime.datetime.strptime(date_str, "%B %Y").strftime('/%m/%Y')
+    return convert_date
 
 
 #  Основная функция (с мануальной функцией)

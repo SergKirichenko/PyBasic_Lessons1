@@ -1,7 +1,7 @@
-# Все пункты сделать как отдельные функции и их вызовы.
 #
 # 1. Написать функцию, которая получает в виде параметра имя файла названия интернет доменов (domains.txt)
 # и возвращает их в виде списка строк (названия возвращать без точки).
+import datetime
 
 
 def open_file(filename) -> str:
@@ -91,7 +91,7 @@ print("3- ", exercise_3)
 # а date_modified - эта же дата, представленная в формате "dd/mm/yyyy" (d-день, m-месяц, y-год)
 # Например [{"date_original": "8th February 1828", "date_modified": 08/02/1828},  ...]
 
-# Подготовительная функция
+# Подготовительная функция (мануальный способ):
 def modification_date(date_str) -> str:
     months_dict = {"January": "01",
                    "February": "02",
@@ -114,9 +114,19 @@ def modification_date(date_str) -> str:
     return modified_date
 
 
-#  Основная функция
+# Подготовительная функция (c помощью модуля datatime):
+def converting_date(date_str) -> str:
+    date_list = date_str.split(' ')
+    if len(date_list) >= 3:
+        days = date_list[0]
+        str_date = (days[0:-2]) + (" ".join(date_list[1:3]))
+        mod_date = datetime.datetime.strptime(str_date, "%d%B %Y").strftime('%d/%m/%Y')
+    else:
+        mod_date = datetime.datetime.strptime(date_str, "%B %Y").strftime('/%m/%Y')
+    return mod_date
 
 
+#  Основная функция (с мануальной функцией)
 def modify_date_list_dictionaries(filename) -> list:
     original_date_dict = list_date_dictionaries(filename)  # вызов функции задания 3
     data_list = []
@@ -127,5 +137,20 @@ def modify_date_list_dictionaries(filename) -> list:
     return data_list
 
 
-exercise_4 = modify_date_list_dictionaries("authors.txt")
-print("4*- ", exercise_4)
+exercise_4a = modify_date_list_dictionaries("authors.txt")
+print("4a- ", exercise_4a)
+
+
+#  Основная функция (с функцией через datetime)
+def convert_date_list_dictionaries(filename) -> list:
+    original_date_dict = list_date_dictionaries(filename)  # вызов функции задания 3
+    data_list = []
+    for my_dict in original_date_dict:
+        date_words_str = my_dict["data"]
+        modify_date = converting_date(date_words_str)  # вызов подготовительно функции
+        data_list.append({"date_original": my_dict["data"], "date_modified": modify_date})
+    return data_list
+
+
+exercise_4b = convert_date_list_dictionaries("authors.txt")
+print("4b-", exercise_4b)

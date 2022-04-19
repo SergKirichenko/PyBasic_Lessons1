@@ -66,9 +66,9 @@ print("2+ -", exercise_2_plus)
 # Например [{"date": "1st January 1919"}, {"date": "8th February 1828"},  ...]
 
 
-def list_date_dictionaries(filename) ->list:
-    data = open_file(filename)
-    data_list = data.split("\n")
+def list_date_dictionaries(filename) -> list:
+    data_str = open_file(filename)
+    data_list = data_str.split("\n")
     data_len_sort = [my_str for my_str in data_list if len(my_str) > 12]
     list_with_date = []
     for data_str in data_len_sort:

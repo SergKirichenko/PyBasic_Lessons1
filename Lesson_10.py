@@ -28,9 +28,9 @@ print("2- ", exercise_1)
 
 def getting_surnames(filename) -> list:
     data_str = open_file(filename)
-    data_list = data_str.split("\n")
+    # data_list = data_str.split("\n")
     surnames_list = []
-    for words_str in data_list:
+    for words_str in data_str.split("\n"):
         words_list = words_str.split("\t")
         surnames_list.append(words_list[1])
     return surnames_list
@@ -44,10 +44,10 @@ print("2- ", exercise_2)
 def getting_list_surnames_of_authors(filename) -> list:
     data_str = open_file(filename)
     surnames_list = []
-    data_list = data_str.split("\n")
-    data_line_str = " ".join(data_list)
-    words_list_data = data_line_str.split(' ')
-    for words_str in words_list_data:
+    # data_list = data_str.split("\n")
+    data_line_str = " ".join(data_str.split("\n"))
+    # words_list_data = data_line_str.split(' ')
+    for words_str in data_line_str.split(' '):
         if "'s" in words_str:
             spec_words_str = words_str[:-2]
             if spec_words_str.istitle():
@@ -68,8 +68,8 @@ print("2+ -", exercise_2_plus)
 
 def list_date_dictionaries(filename) -> list:
     data_str = open_file(filename)
-    data_list = data_str.split("\n")
-    data_len_sort = [my_str for my_str in data_list if len(my_str) > 12]
+    # data_list = data_str.split("\n")
+    data_len_sort = [my_str for my_str in data_str.split("\n") if len(my_str) > 12]
     list_with_date = []
     for data_str in data_len_sort:
         list_sort = data_str.split(" - ")

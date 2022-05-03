@@ -36,17 +36,6 @@ class OperationWithFolder:
                 dir_list.append(os.path.basename(obj_name))
         return {"filenames": file_list, "dirnames": dir_list}
 
-    ##############################################################################################
-    # Метод 1(a) (Вариант 2) создает и обновляет словарь файл.сист директории экземпляра класса
-    def refresh_listdir(self) -> dict:  # Вариант 2 (по тех. условиям не нужен, но тестирование/работе, полезен)
-        self.dict_directory = {"filenames": [os.path.basename(file_name) for file_name in Path(self.dirname).iterdir()
-                                             if file_name.is_file()],
-                               "dirnames": [os.path.basename(dir_name) for dir_name in Path(self.dirname).iterdir()
-                                            if dir_name.is_dir()]}
-        return self.dict_directory
-
-    ###############################################################################################
-
     # Метод 2 сортирует словарь файловой системы папки
     def dict_sorting(self, abc_order=True) -> dict:  # Return sorting self.dict True:alphabet order; False:reverse order
         for key in iter(self.dict_directory):
@@ -97,8 +86,18 @@ class OperationWithFolder:
         for folder_name in set(self.dict_directory["dirnames"]).difference(set(folder_objects["dirnames"])):
             os.makedirs(os.path.join(other_dirname, folder_name))
 
-    ####################################################################################
+    ##############################################################################################
     #  Дополнительные методы:
+    ##############################################################################################
+    # Метод 1(a) (Вариант 2) создает и обновляет словарь файл.сист директории экземпляра класса
+    def refresh_listdir(self) -> dict:  # Вариант 2 (по тех. условиям не нужен, но тестирование/работе, полезен)
+        self.dict_directory = {"filenames": [os.path.basename(file_name) for file_name in Path(self.dirname).iterdir()
+                                             if file_name.is_file()],
+                               "dirnames": [os.path.basename(dir_name) for dir_name in Path(self.dirname).iterdir()
+                                            if dir_name.is_dir()]}
+        return self.dict_directory
+
+    ###############################################################################################
 
     #  функция проверки и создания файла
     def check_and_create_files(self, new_filename: str = "YongFile.txt") -> None:

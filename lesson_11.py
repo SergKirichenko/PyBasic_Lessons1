@@ -12,7 +12,7 @@ from pathlib import Path
 def view_dirlist(dirname: str) -> dict:  # Вариант 1
     dir_list = os.listdir(dirname)
     os.chdir(dirname)  # вход в директорию для проверки
-    dict_dirlist = {"filenames": [file_name for file_name in dir_list if os.path.isfile(file_name)],
+    dict_dirlist = {"filenames": [file_name for file_name in dir_list if os.path.isfile(file_name)],  # это пример увеличивает количество дествий в 2 раза
                     "dirnames": [dir_name for dir_name in dir_list if os.path.isdir(dir_name)]}
     os.chdir("..")    # выход из директории
     return dict_dirlist
@@ -60,13 +60,9 @@ print("2 -", sort_dict)
 
 def add_name_to_dict(dict_name: dict, obj_name: str) -> dict:
     if "." in obj_name:
-        list_files = dict_name["filenames"]
-        list_files.append(obj_name)
-        dict_name["filenames"] = list_files
+        dict_name["filenames"].append(obj_name)
     else:
-        list_directs = dict_name["dirnames"]
-        list_directs.append(obj_name)
-        dict_name["dirnames"] = list_directs
+        dict_name["dirnames"].append(obj_name)
     return dict_name
 
 

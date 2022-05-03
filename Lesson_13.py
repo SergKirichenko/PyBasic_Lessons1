@@ -37,8 +37,8 @@ class OperationFolder:
         return {"filenames": file_list, "dirnames": dir_list}
 
     ##############################################################################################
-    # Метод 1 (Вариант 2) создает и обновляет словарь файл.сист директории экземпляра класса
-    def review_listdir(self) -> dict:  # Вариант 2 (по тех. условиям не нужен, но тестирование/работе, полезен)
+    # Метод 1(a) (Вариант 2) создает и обновляет словарь файл.сист директории экземпляра класса
+    def refresh_listdir(self) -> dict:  # Вариант 2 (по тех. условиям не нужен, но тестирование/работе, полезен)
         self.dict_directory = {"filenames": [os.path.basename(file_name) for file_name in Path(self.dirname).iterdir()
                                              if file_name.is_file()],
                                "dirnames": [os.path.basename(dir_name) for dir_name in Path(self.dirname).iterdir()
@@ -54,6 +54,7 @@ class OperationFolder:
         return self.dict_directory
 
     # Метод 3 добавляет в списки словаря(с файл.сис. директории экземпляра класса), название файла или папки
+    # Если таковых нет. Не добавляет одинаковые имена.
     def add_name_to_dict(self, obj_name: str = '') -> dict:  # Return self dict with file/dir
         if "." in obj_name:
             if obj_name not in self.dict_directory["filenames"]:
@@ -84,7 +85,6 @@ class OperationFolder:
                     dir_path = os.path.join(other_dirname, name_from_dict)
                     if not os.path.isdir(dir_path):
                         os.makedirs(dir_path)
-        return None
 
     #################################################################################################
     #  Метод 4(b)* сравнивает структуры словаря и файловой системы Введенной директории
@@ -116,7 +116,7 @@ class OperationFolder:
         return None
 
     # метод - очистка выбранной папки по вновь добытому списку (!!! удаляет ВСЁ !!! ) (!!!Warning!!! DELETE ALL !!! )
-    def clear_at_folder(self):  # Method Clearing in chosen directory by the names in dictionary
+    def clear_at_folder(self):  # Method Clearing in chosen directory
         dict_name = self.crate_listdir()
         list_dict = []
         for key in dict_name.keys():

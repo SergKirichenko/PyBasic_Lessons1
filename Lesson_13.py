@@ -42,8 +42,8 @@ class OperationWithFolder:
             self.dict_directory[key] = sorted(self.dict_directory[key], reverse=not abc_order)
         return self.dict_directory
 
-    # Метод 3 добавляет в списки словаря(с файл.сис. директории экземпляра класса), название файла или папки
-    # Если таковых нет. Не добавляет одинаковые имена.
+    # Метод 3 добавляет в списки словаря(из файл.сис. директории экземпляра класса), название файла или папки
+    # Если таковых имён в нём нет. (Не добавляет одинаковые имена)
     def add_name_to_dict(self, obj_name: str = '') -> dict:  # Return self dict with file/dir
         if "." in obj_name:
             if obj_name not in self.dict_directory["filenames"]:
@@ -79,7 +79,7 @@ class OperationWithFolder:
     #  Метод 4(b)* сравнивает структуры словаря и файловой системы Введенной директории
 
     def compare_and_create_objects(self, other_dirname: str):
-        folder_objects = crate_listdir(other_dirname)  # Функция вне класса (line 135)
+        folder_objects = crate_listdir(other_dirname)  # Функция вне класса (line 149)
         for filename in set(self.dict_directory["filenames"]).difference(set(folder_objects["filenames"])):
             with open(os.path.join(other_dirname, filename), 'w') as file:
                 file.write('')
@@ -115,7 +115,7 @@ class OperationWithFolder:
         return None
 
     # метод - очистка выбранной папки по вновь добытому списку (!!! удаляет ВСЁ !!! ) (!!!Warning!!! DELETE ALL !!! )
-    def clear_at_folder(self):  # Method Clearing in chosen directory
+    def clear_all_self_folder(self):  # Method Clearing in self(class) directory
         dict_name = self.crate_listdir()
         list_dict = []
         for key in dict_name.keys():
@@ -126,6 +126,20 @@ class OperationWithFolder:
                 os.remove(file_path)
         for names in list_dict:
             dir_path = os.path.join(self.dirname, names)
+            if os.path.isdir(dir_path):
+                os.rmdir(dir_path)
+
+    # метод - очищает в выбранной директории от объектов по списку словаря
+    def clear_himself(self, other_dirname):  # Method Clearing in chosen directory
+        list_dict = []
+        for key in self.dict_directory.keys():
+            list_dict += self.dict_directory[key]
+        for names in list_dict:
+            file_path = os.path.join(other_dirname, names)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+        for names in list_dict:
+            dir_path = os.path.join(other_dirname, names)
             if os.path.isdir(dir_path):
                 os.rmdir(dir_path)
 

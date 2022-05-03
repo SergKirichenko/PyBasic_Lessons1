@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 
-class OperationFolder:
+class OperationWithFolder:
     def __init__(self, dirname):
         self.dirname = dirname
         self.dict_directory = self.crate_listdir()

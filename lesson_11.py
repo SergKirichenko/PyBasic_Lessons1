@@ -12,9 +12,10 @@ from pathlib import Path
 def view_dirlist(dirname: str) -> dict:  # Вариант 1
     dir_list = os.listdir(dirname)
     os.chdir(dirname)  # вход в директорию для проверки
-    dict_dirlist = {"filenames": [file_name for file_name in dir_list if os.path.isfile(file_name)],  # это пример увеличивает количество дествий в 2 раза
+    dict_dirlist = {"filenames": [file_name for file_name in dir_list if os.path.isfile(file_name)],
+                    # это пример увеличивает количество дествий в 2 раза
                     "dirnames": [dir_name for dir_name in dir_list if os.path.isdir(dir_name)]}
-    os.chdir("..")    # выход из директории
+    os.chdir("..")  # выход из директории
     return dict_dirlist
 
 
@@ -67,7 +68,7 @@ def add_name_to_dict(dict_name: dict, obj_name: str) -> dict:
 
 
 add_file = add_name_to_dict(dict_dir_and_file_names_v1, "qwerty.txt")  # Вызов 1: Добавлен файл
-add_dir = add_name_to_dict(dict_dir_and_file_names_v1, "Dir_ABC")     # Вызов 2: Добавлен каталог/папка/директория
+add_dir = add_name_to_dict(dict_dir_and_file_names_v1, "Dir_ABC")  # Вызов 2: Добавлен каталог/папка/директория
 print("3 -", add_dir)
 
 
@@ -106,3 +107,14 @@ def compare_and_assimilate_filesys(dict_name: dict, other_dir_name: str) -> None
 
 
 compare_and_assimilate_filesys(dict_dir_and_file_names_v1, "ABCDEF")
+
+
+################################################################################
+
+def compare_and_create_objects(dict_directory: dict, other_dirname: str):
+    folder_objects_real = view_listdir_with_path(other_dirname)
+    for filename in set(dict_directory["filenames"]).difference(set(folder_objects_real["filenames"])):
+        with open(os.path.join(other_dirname, filename), 'w') as file:
+            file.write('')
+    for folder in set(dict_directory["dirnames"]).difference(set(folder_objects_real["dirnames"])):
+        os.makedirs(os.path.join(other_dirname, folder))

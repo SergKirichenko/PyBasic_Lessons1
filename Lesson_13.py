@@ -79,7 +79,7 @@ class OperationWithFolder:
     #  Метод 4(b)* сравнивает структуры словаря и файловой системы Введенной директории
 
     def compare_and_create_objects(self, other_dirname: str):
-        folder_objects = crate_listdir(other_dirname)  # Функция вне класса (line 149)
+        folder_objects = crate_listdir(other_dirname)  # Функция вне класса (line 147)
         for filename in set(self.dict_directory["filenames"]).difference(set(folder_objects["filenames"])):
             with open(os.path.join(other_dirname, filename), 'w') as file:
                 file.write('')
@@ -105,14 +105,12 @@ class OperationWithFolder:
         if not os.path.isfile(file_path):
             with open(file_path, 'w') as my_file:
                 my_file.write('s')
-        return None
 
     #  функция проверки и создания директории
     def check_and_create_directories(self, new_dirname: str = "NewFolder") -> None:
         dir_path = os.path.join(self.dirname, new_dirname)
         if not os.path.isdir(dir_path):
             os.makedirs(dir_path)
-        return None
 
     # метод - очистка выбранной папки по вновь добытому списку (!!! удаляет ВСЁ !!! ) (!!!Warning!!! DELETE ALL !!! )
     def clear_all_self_folder(self):  # Method Clearing in self(class) directory

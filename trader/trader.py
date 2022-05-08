@@ -52,12 +52,12 @@ def stat_logos(rate_: float = 0, delta_: float = 0, money_usd_: float = 0, money
             nom += 1
     header = data[0]
     data_info = [nom, rate_, delta_, money_usd_, money_uah_, date_time]
-    with open(path_file, 'play_sc', newline='') as file:
+    with open(path_file, 'a', newline='') as file:
         writer = csv.writer(file, delimiter='|')
         writer.writerow(data_info)
     if clear:
         os.remove(path_file)
-        with open(path_file, 'play_sc', newline='') as file:
+        with open(path_file, 'a', newline='') as file:
             writer = csv.writer(file, delimiter='|')
             writer.writerow(header)
 

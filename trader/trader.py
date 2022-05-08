@@ -52,12 +52,12 @@ def stat_logos(rate_: float = 0, delta_: float = 0, money_usd_: float = 0, money
             nom += 1
     header = data[0]
     data_info = [nom, rate_, delta_, money_usd_, money_uah_, date_time]
-    with open(path_file, 'a', newline='') as file:
+    with open(path_file, 'play_sc', newline='') as file:
         writer = csv.writer(file, delimiter='|')
         writer.writerow(data_info)
     if clear:
         os.remove(path_file)
-        with open(path_file, 'a', newline='') as file:
+        with open(path_file, 'play_sc', newline='') as file:
             writer = csv.writer(file, delimiter='|')
             writer.writerow(header)
 
@@ -198,13 +198,13 @@ if keys in ("NEXT", "RATE", "AVAILABLE"):
     filename = "config_logs.json"
     if not os.path.isfile(os.path.join(filename)):
         filename = "config.json"
-    a = commands[keys]
-    a(filename_=filename)
+    play_sc = commands[keys]
+    play_sc(filename_=filename)
 elif keys in ("BUY ALL", "SELL ALL", "RESTART"):
-    a = commands[keys]
-    a()
+    play_sc = commands[keys]
+    play_sc()
 else:
-    a = commands[keys]
-    a(score)
+    play_sc = commands[keys]
+    play_sc(score)
 ################################################################################################################
 # The End

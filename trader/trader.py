@@ -174,10 +174,12 @@ def next_rate(filename_: str):
     rate_ = dict_data["rate"]
     new_rate = round((rate_ + delta_range), 2)
     delta_ = round(delta_range, 2)
+    money_usd = dict_data["amount on account USD"]
+    money_uah = dict_data["amount on account UAH"]
     dict_data["rate"] = new_rate
     dict_data["delta"] = delta_
     write_json_file(dict_data)
-    stat_logos(rate_=new_rate, delta_=delta_)
+    stat_logos(rate_=new_rate, delta_=delta_, money_usd_=money_usd, money_uah_=money_uah)
 
 
 ###################################################################################################################

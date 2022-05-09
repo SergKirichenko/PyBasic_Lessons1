@@ -61,7 +61,7 @@ def stat_logos(rate_: float = 0, delta_: float = 0, money_usd_: float = 0, money
     path_file = os.path.join("logs.csv")
     date_time = datetime.datetime.now().strftime("%d-%m-%y %X")
     data_list, nom = logs_read(path_file)
-    data_info = [nom, rate_, delta_, money_usd_, money_uah_, date_time]
+    data_info = [nom, rate_, delta_, money_usd_, money_uah_, 2, date_time]
     logs_write(path_file=path_file, data_=data_info)
 
 
@@ -106,7 +106,7 @@ def buy_usd(input_buy: float, filename_: str = "config_status.json"):
     else:
         print(f"UNAVAILABLE, REQUIRED BALANCE UAH: {round(deal, 2)}, AVAILABLE {round(money_uah_, 2)}")
     write_json_file(data)
-    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_)
+    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
 
 # Покупка ВСЁ
@@ -118,7 +118,7 @@ def buy_all(filename_: str = "config_status.json"):
     money_uah_ -= round((deal * rate_), 2)
     data = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
     write_json_file(data)
-    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_)
+    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
 
 # Ф-ция продажи кол-ва USD
@@ -133,7 +133,7 @@ def sell_usd(input_sell: float, filename_: str = "config_status.json"):
     else:
         print(f"UNAVAILABLE, REQUIRED BALANCE USD: {round(input_sell, 2)}, AVAILABLE {round(money_usd_, 2)}")
     write_json_file(data)
-    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_)
+    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
 
 #  Ф-ция Продажа На ВСЕ
@@ -145,7 +145,7 @@ def sell_all(filename_: str = "config_status.json"):
     money_usd_ -= round((deal / rate_), 2)
     data = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
     write_json_file(data)
-    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_)
+    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
 
 ##################################################################################################################
@@ -154,7 +154,7 @@ def available_info(filename_: str = "config.json") -> None:
     dict_status = read_json_file(filename_)
     money_usd_ = dict_status["amount on account USD"]
     money_uah_ = dict_status["amount on account UAH"]
-    print(f"USD {round(money_uah_, 2)} UAH {round(money_usd_, 2)}")
+    print(f"USD {round(money_usd_, 2)} UAH {round(money_uah_, 2)}")
 
 
 # Ф-ция Инфо Курса валюты
@@ -175,7 +175,7 @@ def reset_file():
 # Алгоритм NEXT
 def next_rate(filename_: str):
     data = read_json_file(filename_)
-    rate_, money_usd_, money_uah_ = data_read(data)
+    rate_, money_usd_, money_uah_, delta_ = data_read(data)
     delta_range = random.triangular(-0.5, 0.5, 0.01)
     new_rate = round((rate_ + delta_range), 2)
     delta_ = round(delta_range, 2)

@@ -27,7 +27,7 @@ else:
 
 #####################################################################################################################
 # Ф-ции чтения и записи файл-статуса
-def read_json_file(filename_: str) -> Union[Dict]:
+def read_json_file(filename_: str) -> dict:
     with open(filename_, 'r') as file:
         data = json.load(file)
     return data
@@ -60,7 +60,7 @@ def logs_write(path_file, data_):
 def stat_logos(rate_: float = 0, delta_: float = 0, money_usd_: float = 0, money_uah_: float = 0):
     path_file = os.path.join("logs.csv")
     date_time = datetime.datetime.now().strftime("%d-%m-%y %X")
-    data_list, nom = logs_read(path_file)
+    data_list, nom = logs_read(path_file=path_file)
     data_info = [nom, rate_, delta_, money_usd_, money_uah_, 2, date_time]
     logs_write(path_file=path_file, data_=data_info)
 

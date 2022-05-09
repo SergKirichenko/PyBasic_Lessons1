@@ -33,7 +33,7 @@ def read_json_file(filename_: str) -> Union[Dict]:
     return data
 
 
-def write_json_file(data: Union[List, Dict], filename_: str = "config_logs.json") -> None:
+def write_json_file(data: Union[List, Dict], filename_: str = "config_status.json") -> None:
     with open(filename_, 'w') as file:
         json.dump(data, file, indent=2)
 
@@ -95,7 +95,7 @@ def data_write(data_: dict, rate_: float, money_usd_: float, money_uah_: float, 
 
 ######################################################################################################################
 # ф-ция покупки n-го кол-ва валюты
-def buy_usd(input_buy: float, filename_: str = "config_logs.json"):
+def buy_usd(input_buy: float, filename_: str = "config_status.json"):
     data = read_json_file(filename_)
     rate_, money_usd_, money_uah_, delta_ = data_read(data)
     deal = input_buy * rate_
@@ -110,7 +110,7 @@ def buy_usd(input_buy: float, filename_: str = "config_logs.json"):
 
 
 # Покупка ВСЁ
-def buy_all(filename_: str = "config_logs.json"):
+def buy_all(filename_: str = "config_status.json"):
     data = read_json_file(filename_)
     rate_, money_usd_, money_uah_, delta_ = data_read(data)
     deal = money_uah_ / rate_
@@ -122,7 +122,7 @@ def buy_all(filename_: str = "config_logs.json"):
 
 
 # Ф-ция продажи кол-ва USD
-def sell_usd(input_sell: float, filename_: str = "config_logs.json"):
+def sell_usd(input_sell: float, filename_: str = "config_status.json"):
     data = read_json_file(filename_)
     rate_, money_usd_, money_uah_, delta_ = data_read(data)
     if input_sell <= money_usd_:
@@ -137,7 +137,7 @@ def sell_usd(input_sell: float, filename_: str = "config_logs.json"):
 
 
 #  Ф-ция Продажа На ВСЕ
-def sell_all(filename_: str = "config_logs.json"):
+def sell_all(filename_: str = "config_status.json"):
     data = read_json_file(filename_)
     rate_, money_usd_, money_uah_, delta_ = data_read(data)
     deal = money_usd_ * rate_
@@ -198,7 +198,7 @@ commands = {'NEXT': next_rate,
 # Запуск сценариев
 if keys in ("NEXT", "RATE", "AVAILABLE"):
     play_sc = commands[keys]
-    play_sc(filename_="config_logs.json")
+    play_sc(filename_="config_status.json")
 elif keys in ("BUY ALL", "SELL ALL", "RESTART"):
     play_sc = commands[keys]
     play_sc()

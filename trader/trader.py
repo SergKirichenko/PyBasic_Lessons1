@@ -85,7 +85,7 @@ def data_read(data: dict):
     return [rate_, money_usd_, money_uah_, delta_]
 
 
-def data_write(data_: dict, rate_: float, money_usd_: float, money_uah_: float, delta: float) -> dict:
+def new_data_write(data_: dict, rate_: float, money_usd_: float, money_uah_: float, delta: float) -> dict:
     data_["rate"] = rate_
     data_["amount on account USD"] = round(money_usd_, 2)
     data_["amount on account UAH"] = round(money_uah_, 2)
@@ -102,7 +102,7 @@ def buy_usd(input_buy: float, filename_: str = "config_status.json"):
     if (money_uah_ - deal) > 0:
         money_uah_ -= round(deal, 2)
         money_usd_ += input_buy
-        data_new = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+        data_new = new_data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
         write_json_file(data_new)
         stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
@@ -117,7 +117,7 @@ def buy_all(filename_: str = "config_status.json"):
     deal = money_uah_ / rate_
     money_usd_ += round(deal, 2)
     money_uah_ -= round((deal * rate_), 2)
-    data_new = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+    data_new = new_data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
     write_json_file(data_new)
     stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
@@ -130,7 +130,7 @@ def sell_usd(input_sell: float, filename_: str = "config_status.json"):
         deal = input_sell * rate_
         money_uah_ += round(deal, 2)
         money_usd_ -= round(input_sell, 2)
-        data_new = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+        data_new = new_data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
         write_json_file(data_new)
         stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
     else:
@@ -144,7 +144,7 @@ def sell_all(filename_: str = "config_status.json"):
     deal = money_usd_ * rate_
     money_uah_ += round(deal, 2)
     money_usd_ -= round((deal / rate_), 2)
-    data_new = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+    data_new = new_data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
     write_json_file(data_new)
     stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
@@ -180,7 +180,7 @@ def next_rate(filename_: str):
     delta_range = random.triangular(-0.5, 0.5, 0.01)
     new_rate = round((rate_ + delta_range), 2)
     delta_ = round(delta_range, 2)
-    data_new = data_write(data_=data, rate_=new_rate, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+    data_new = new_data_write(data_=data, rate_=new_rate, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
     write_json_file(data=data_new)
     stat_logos(rate_=new_rate, delta_=delta_, money_usd_=money_usd_, money_uah_=money_uah_)
 

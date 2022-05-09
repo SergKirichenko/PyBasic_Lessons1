@@ -50,7 +50,7 @@ def logs_read(path_file) -> Union[list, int]:
     return [data, nom]
 
 
-def logs_write(path_file, data_):
+def logs_write(path_file, data_: list):
     with open(path_file, 'a', newline='') as file:
         writer = csv.writer(file, delimiter='|')
         writer.writerow(data_)
@@ -65,7 +65,7 @@ def stat_logos(rate_: float = 0, delta_: float = 0, money_usd_: float = 0, money
     logs_write(path_file=path_file, data_=data_info)
 
 
-def clear_logs(clear=False):
+def clear_logs(clear: bool = False):
     path_file = os.path.join("logs.csv")
     data_list, nom = logs_read(path_file)
     header = data_list[0]
@@ -102,11 +102,12 @@ def buy_usd(input_buy: float, filename_: str = "config_status.json"):
     if (money_uah_ - deal) > 0:
         money_uah_ -= round(deal, 2)
         money_usd_ += input_buy
-        data = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+        data_new = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+        write_json_file(data_new)
+        stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
+
     else:
         print(f"UNAVAILABLE, REQUIRED BALANCE UAH: {round(deal, 2)}, AVAILABLE {round(money_uah_, 2)}")
-    write_json_file(data)
-    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
 
 # Покупка ВСЁ
@@ -116,8 +117,8 @@ def buy_all(filename_: str = "config_status.json"):
     deal = money_uah_ / rate_
     money_usd_ += round(deal, 2)
     money_uah_ -= round((deal * rate_), 2)
-    data = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
-    write_json_file(data)
+    data_new = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+    write_json_file(data_new)
     stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
 
@@ -129,11 +130,11 @@ def sell_usd(input_sell: float, filename_: str = "config_status.json"):
         deal = input_sell * rate_
         money_uah_ += round(deal, 2)
         money_usd_ -= round(input_sell, 2)
-        data = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+        data_new = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+        write_json_file(data_new)
+        stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
     else:
         print(f"UNAVAILABLE, REQUIRED BALANCE USD: {round(input_sell, 2)}, AVAILABLE {round(money_usd_, 2)}")
-    write_json_file(data)
-    stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
 
 #  Ф-ция Продажа На ВСЕ
@@ -143,8 +144,8 @@ def sell_all(filename_: str = "config_status.json"):
     deal = money_usd_ * rate_
     money_uah_ += round(deal, 2)
     money_usd_ -= round((deal / rate_), 2)
-    data = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
-    write_json_file(data)
+    data_new = data_write(data_=data, rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+    write_json_file(data_new)
     stat_logos(rate_=rate_, money_usd_=money_usd_, money_uah_=money_uah_, delta_=delta_)
 
 
@@ -179,8 +180,8 @@ def next_rate(filename_: str):
     delta_range = random.triangular(-0.5, 0.5, 0.01)
     new_rate = round((rate_ + delta_range), 2)
     delta_ = round(delta_range, 2)
-    data = data_write(data_=data, rate_=new_rate, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
-    write_json_file(data=data)
+    data_new = data_write(data_=data, rate_=new_rate, money_usd_=money_usd_, money_uah_=money_uah_, delta=delta_)
+    write_json_file(data=data_new)
     stat_logos(rate_=new_rate, delta_=delta_, money_usd_=money_usd_, money_uah_=money_uah_)
 
 

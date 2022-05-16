@@ -6,24 +6,6 @@ import os
 import datetime
 import random
 
-args = ArgumentParser()
-args.add_argument("command", type=str)
-args.add_argument("second", nargs="?", default="")
-args = vars(args.parse_args())
-key_ = args['command'].upper()
-sub_key = args['second']
-score = 0
-if sub_key.isalpha():
-    keys = f"{key_} {sub_key.upper()}"
-elif sub_key.isdigit():
-    keys = key_
-    try:
-        score = float(sub_key)
-    except TypeError:
-        print("Enter correct number!")
-else:
-    keys = key_
-
 
 #####################################################################################################################
 # Ф-ции чтения и записи файл-статуса
@@ -184,6 +166,25 @@ def next_rate(filename_: str):
     write_json_file(data=data_new)
     stat_logos(rate_=new_rate, delta_=delta_, money_usd_=money_usd_, money_uah_=money_uah_)
 
+
+####################################################################################################################
+args = ArgumentParser()
+args.add_argument("command", type=str)
+args.add_argument("second", nargs="?", default="")
+args = vars(args.parse_args())
+key_ = args['command'].upper()
+sub_key = args['second']
+score = 0
+if sub_key.isalpha():
+    keys = f"{key_} {sub_key.upper()}"
+elif sub_key.isdigit():
+    keys = key_
+    try:
+        score = float(sub_key)
+    except TypeError:
+        print("Enter correct number!")
+else:
+    keys = key_
 
 ###################################################################################################################
 commands = {'NEXT': next_rate,

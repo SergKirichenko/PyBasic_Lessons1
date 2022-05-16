@@ -6,24 +6,6 @@ import csv
 import datetime
 import random
 
-args = ArgumentParser()
-args.add_argument("command", type=str)
-args.add_argument("second", nargs="?", default="")
-args = vars(args.parse_args())
-key_ = args['command'].upper()
-sub_key = args['second']
-score = 0
-if sub_key.isalpha():
-    keys = f"{key_} {sub_key.upper()}"
-elif sub_key.isdigit():
-    keys = key_
-    try:
-        score = float(sub_key)
-    except TypeError:
-        print("Enter correct number!")
-else:
-    keys = key_
-
 
 ##################################################################################################################
 class Trader:
@@ -107,7 +89,6 @@ class Trader:
         self.stat_logs_update()
         self.logs_write(self.data_logs)
 
-    #############################################################################################################
     # Алгоритм NEXT
     def next_rate(self):
         delta_range = random.triangular(-0.5, 0.5, 0.01)
@@ -115,7 +96,6 @@ class Trader:
         self.delta = round(delta_range, 2)
         self.update_write()
 
-    #############################################################################################################
     # ф-ция покупки n-го кол-ва валюты
     def buy_usd(self, input_buy: float, ):
         deal = input_buy * self.rate
@@ -151,15 +131,35 @@ class Trader:
         self.update_write()
 
 
+#####################################################################################################################
+args = ArgumentParser()
+args.add_argument("command", type=str)
+args.add_argument("second", nargs="?", default="")
+args = vars(args.parse_args())
+key_ = args['command'].upper()
+sub_key = args['second']
+score = 0
+if sub_key.isalpha():
+    keys = f"{key_} {sub_key.upper()}"
+elif sub_key.isdigit():
+    keys = key_
+    try:
+        score = float(sub_key)
+    except TypeError:
+        print("Enter correct number!")
+else:
+    keys = key_
+
 ###################################################################################################################
-commands = {'NEXT': Trader().next_rate,
-            'RATE': Trader().rate_val,
-            'AVAILABLE': Trader().available_info,
-            'BUY': Trader().buy_usd,
-            'SELL': Trader().sell_usd,
-            'RESTART': Trader().reset_file,
-            'BUY ALL': Trader().buy_all,
-            'SELL ALL': Trader().sell_all,
+trader = Trader()
+commands = {'NEXT': trader.next_rate,
+            'RATE': trader.rate_val,
+            'AVAILABLE': trader.available_info,
+            'BUY': trader.buy_usd,
+            'SELL': trader.sell_usd,
+            'RESTART': trader.reset_file,
+            'BUY ALL': trader.buy_all,
+            'SELL ALL': trader.sell_all,
             }
 #####################################################################################################################
 # Запуск сценариев

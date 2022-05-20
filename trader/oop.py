@@ -97,7 +97,7 @@ class Trader:
         self.update_write()
 
     # ф-ция покупки n-го кол-ва валюты
-    def buy_usd(self, input_buy: float, ):
+    def buy_usd(self, input_buy: float):
         deal = input_buy * self.rate
         if (self.money_uah - deal) > 0:
             self.money_uah -= round(deal, 2)
